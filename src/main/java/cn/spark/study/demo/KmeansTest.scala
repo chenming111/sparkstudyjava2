@@ -5,7 +5,22 @@ import org.apache.spark.mllib.clustering.{KMeans, KMeansModel}
 import org.apache.spark.{SparkConf, SparkContext}
 import org.apache.spark.mllib.linalg.Vectors
 
-
+/**
+  * k-means 示例
+  * 源数据为：
+  * 0.0 0.0 0.0
+  * 0.1 0.1 0.1
+  * 0.2 0.2 0.2
+  * 0.3 0.3 0.3
+  * 0.4 0.4 0.4
+  * 0.5 0.5 0.5
+  * 9.0 9.0 9.0
+  * 9.1 9.1 9.1
+  * 9.2 9.2 9.2
+  * 9.3 9.3 9.3
+  * 9.4 9.4 9.4
+  * 9.5 9.5 9.5
+  */
 
 object KmeansTest {
   def main(args: Array[String]): Unit = {
