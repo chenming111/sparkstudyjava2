@@ -23,6 +23,12 @@ import org.apache.spark.sql.types.StructType;
 import scala.Tuple2;
 
 public class SparkDataFromMysql {
+	/**
+	 * 扫描整个任务表，获取task_id和task_status字段，
+	 * 如果task_status字段为0表示未进行wordcount处理，那么就
+	 * 调用WordCountByTaskId进行处理，将结果存入数据库，并将task_status字段更新为1,表示已处理完；
+	 * 如果task_status字段为1,表示已处理完，跳过。
+	 */
 
 	public static org.apache.log4j.Logger logger = org.apache.log4j.Logger.getLogger(SparkDataFromMysql.class);
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
@@ -62,6 +68,12 @@ public class SparkDataFromMysql {
          conn.close();
 		sparkContext.stop();
 	}
+
+	/**
+	 * 根据taskid查询数据库获取任务参数task_param（要分析的文本）,进行wordcount分析后，结果存入数据库
+	 * @param task_id
+	 * @param sqlContext
+	 */
 
 	private static void WordCountByTaskId(final int task_id,SQLContext sqlContext){
 
